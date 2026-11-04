@@ -462,3 +462,25 @@ a,button,[role=button],input,textarea,label,summary{-webkit-tap-highlight-color:
 #intro .mark{mix-blend-mode:normal}
 #intro .mark img{filter:none;-webkit-mask-image:none;mask-image:none}
 #intro .skip{color:#8b8d91}
+
+
+/* ---------- partner advert: SettleLink ---------- */
+.sl span:first-child{color:#71be22}
+.sl span:last-child{color:#3d88f6}
+.ad{position:relative;overflow:hidden;isolation:isolate;background:linear-gradient(135deg,#17181b 0%,#0e0f11 70%);border:1px solid var(--line);padding:clamp(26px,4.6vw,60px)}
+.ad:before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,#71be22,#2877f5)}
+.ad:after{content:"";position:absolute;right:-4%;bottom:-8%;width:46%;aspect-ratio:1;background:rgba(201,162,74,.07);clip-path:polygon(50% 0,100% 58%,100% 100%,0 100%,0 58%);pointer-events:none;z-index:-1}
+.ad-tag{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 24px;font-size:14px;color:var(--mute);max-width:none}
+.ad-tag b{border:1px solid #4a4f55;padding:2px 10px;color:var(--bone);font-weight:600}
+.ad-brands{display:flex;align-items:center;gap:clamp(14px,3vw,32px);flex-wrap:wrap;margin-bottom:clamp(24px,3.4vw,40px)}
+.ad-x{font:500 clamp(26px,3vw,38px)/1 var(--head);color:var(--gold-hi)}
+.ad-sl{height:clamp(48px,6.4vw,68px);width:auto;object-fit:contain}
+.ad h2{font-size:clamp(30px,4.6vw,60px);max-width:18ch;margin-bottom:clamp(20px,2.6vw,30px)}
+.ad-quote{margin:0 0 clamp(26px,3.4vw,40px);padding:2px 0 2px 22px;border-left:4px solid;border-image:linear-gradient(180deg,#71be22,#2877f5) 1;max-width:60ch}
+.ad-quote p{font:600 clamp(19px,2.3vw,27px)/1.35 var(--head);letter-spacing:-.015em;max-width:none}
+.ad-quote cite{display:block;margin-top:12px;font:500 15px/1.5 var(--body);font-style:normal;color:var(--mute)}
+.ad-points{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin:0 0 clamp(26px,3.4vw,38px)}
+.ad-points li{display:flex;gap:12px;align-items:flex-start;padding-left:14px;border-left:2px solid var(--gold);font-size:15.5px;line-height:1.35}
+.ad-points svg{width:26px;height:26px;flex:none;color:var(--gold-hi)}
+@media(max-width:900px){.ad-points{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.ad-points{grid-template-columns:1fr}}
