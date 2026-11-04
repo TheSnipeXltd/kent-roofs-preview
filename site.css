@@ -498,3 +498,20 @@ a,button,[role=button],input,textarea,label,summary{-webkit-tap-highlight-color:
   .ad-brands{grid-template-columns:1fr}
   .ad-x{width:auto;height:46px;border-inline:0;border-block:1px solid #3a3e44}
 }
+
+
+/* ---------- opening animation, second beat: partnering with SettleLink ---------- */
+#intro .mark{animation:logoIn .65s var(--ease) .05s both,logoOut .45s var(--ease) 1.15s forwards}
+#intro .bar{width:0;animation:loadW 2.5s linear both;background:linear-gradient(90deg,#c9a24a 0,#c9a24a 40%,#71be22 62%,#2877f5 100%);background-size:100vw 100%}
+#intro .partner{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:clamp(14px,2.4vw,22px);text-align:center;pointer-events:none;transition:opacity .25s}
+#intro .partner:before{content:"";position:absolute;inset:-10%;background:radial-gradient(38% 32% at 26% 56%,rgba(113,190,34,.17),transparent 70%),radial-gradient(38% 32% at 74% 46%,rgba(40,119,245,.2),transparent 70%);opacity:0;animation:pFade .9s ease 1.25s forwards}
+#intro .pw{position:relative;margin:0;font:500 clamp(16px,2.2vw,22px)/1 var(--body);letter-spacing:.04em;color:#cfcec8;opacity:0;transform:translateY(12px);animation:pIn .6s var(--ease) 1.4s forwards}
+#intro .psl{position:relative;width:min(460px,76vw);height:auto;clip-path:inset(0 100% 0 0);animation:pWipe .8s var(--ease-io) 1.55s forwards}
+#intro .pbar{position:relative;display:block;width:min(240px,50vw);height:3px;border-radius:3px;background:linear-gradient(90deg,#71be22,#2877f5);transform:scaleX(0);transform-origin:left;animation:pBar .7s var(--ease) 1.85s forwards}
+#intro.out .partner{opacity:0}
+@keyframes logoOut{to{opacity:0;transform:translateY(-28px) scale(.92)}}
+@keyframes loadW{to{width:100%}}
+@keyframes pFade{to{opacity:1}}
+@keyframes pIn{to{opacity:1;transform:none}}
+@keyframes pWipe{to{clip-path:inset(0)}}
+@keyframes pBar{to{transform:scaleX(1)}}

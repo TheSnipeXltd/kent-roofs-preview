@@ -12,7 +12,7 @@ function endIntro(){
   setTimeout(()=>intro.remove(),1000);
 }
 if(!intro||reduce||seen){intro&&intro.remove();root.classList.add('ready')}
-else{root.classList.add('lock');setTimeout(endIntro,1400);intro.addEventListener('click',endIntro);addEventListener('keydown',e=>{if(e.key==='Escape')endIntro()})}
+else{root.classList.add('lock');setTimeout(endIntro,2600);intro.addEventListener('click',endIntro);addEventListener('keydown',e=>{if(e.key==='Escape')endIntro()})}
 
 /* header: progress bar and solid background; scroll work is batched into one frame */
 const hdr=$('#hdr'),prog=$('#prog'),nav=$('#nav'),burger=$('#burger');
