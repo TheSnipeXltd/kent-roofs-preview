@@ -484,3 +484,17 @@ a,button,[role=button],input,textarea,label,summary{-webkit-tap-highlight-color:
 .ad-points svg{width:26px;height:26px;flex:none;color:var(--gold-hi)}
 @media(max-width:900px){.ad-points{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.ad-points{grid-template-columns:1fr}}
+
+
+/* partnership lockup: the two logos side by side, same size, clearly joined */
+.ad-brands{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:stretch;gap:0;flex-wrap:unset;border:1px solid #3a3e44;background:rgba(255,255,255,.035);margin-bottom:clamp(26px,3.6vw,44px)}
+.ad-brand{display:flex;align-items:center;justify-content:center;padding:clamp(18px,2.8vw,30px) clamp(14px,2.4vw,28px);min-height:clamp(92px,11vw,128px)}
+.ad-brand .brand{font-size:clamp(22px,2.8vw,32px);gap:clamp(10px,1.4vw,16px)}
+.ad-brand .brand img{width:clamp(56px,6.6vw,80px);height:auto}
+.ad-brand .brand small{font-size:clamp(13px,1.4vw,16px)}
+.ad-brand .ad-sl{height:clamp(54px,7vw,84px);width:auto;max-width:100%}
+.ad-x{display:grid;place-items:center;width:clamp(48px,5.4vw,68px);font:500 clamp(28px,3.4vw,42px)/1 var(--head);color:var(--gold-hi);border-inline:1px solid #3a3e44;background:rgba(201,162,74,.08)}
+@media(max-width:560px){
+  .ad-brands{grid-template-columns:1fr}
+  .ad-x{width:auto;height:46px;border-inline:0;border-block:1px solid #3a3e44}
+}
