@@ -1,0 +1,115 @@
+{
+  "_help": "Fill what you have, leave the rest empty. Then run: python tools/apply_business.py .   and   python tools/seo.py .",
+  "domain": "",
+  "email": "",
+  "address": "",
+  "address_parts": {
+    "streetAddress": "",
+    "addressLocality": "",
+    "addressRegion": "Kent",
+    "postalCode": ""
+  },
+  "company_number": "",
+  "insurance_footer": "",
+  "insurance_cover": "",
+  "cscs": "",
+  "guarantee": "",
+  "hours": "",
+  "opening_hours": [],
+  "materials": "",
+  "pub_hours": "",
+  "pub_paperwork": "",
+  "travel_range": "",
+  "subcontract": "",
+  "housing_paperwork": "",
+  "areas": [],
+  "same_as": [],
+  "legal_reviewed_date": "",
+  "copy_approved": false,
+  "projects": {
+    "p0049": {
+      "town": "",
+      "title": ""
+    },
+    "p0021": {
+      "town": "",
+      "title": ""
+    },
+    "p0019": {
+      "town": "",
+      "title": ""
+    },
+    "p0022": {
+      "town": "",
+      "title": ""
+    },
+    "p0005": {
+      "town": "",
+      "title": ""
+    },
+    "p0006": {
+      "town": "",
+      "title": ""
+    },
+    "p0036": {
+      "town": "",
+      "title": ""
+    },
+    "p0035": {
+      "town": "",
+      "title": ""
+    },
+    "p0038": {
+      "town": "",
+      "title": ""
+    },
+    "p0013": {
+      "town": "",
+      "title": ""
+    },
+    "p0023": {
+      "town": "",
+      "title": ""
+    },
+    "p0024": {
+      "town": "",
+      "title": ""
+    },
+    "p0010": {
+      "town": "",
+      "title": ""
+    },
+    "p0018": {
+      "town": "",
+      "title": ""
+    },
+    "p0040": {
+      "town": "",
+      "title": ""
+    },
+    "p0041": {
+      "town": "",
+      "title": ""
+    },
+    "p0043": {
+      "town": "",
+      "title": ""
+    },
+    "p0046": {
+      "town": "",
+      "title": ""
+    },
+    "p0015": {
+      "town": "",
+      "title": ""
+    },
+    "p0014": {
+      "town": "",
+      "title": ""
+    }
+  },
+  "analytics": {
+    "provider": "plausible",
+    "plausible_domain": ""
+  }
+}
