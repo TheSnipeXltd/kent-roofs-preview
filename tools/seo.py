@@ -13,7 +13,7 @@ SERV = {"slating":"Slating","tiling":"Tiling","flat-roofing":"Flat roofing","lea
 def biz():
     b = {"@type": "RoofingContractor", "@id": dom + "/#business", "name": "Kent Roofs Limited", "url": dom + "/",
          "telephone": "+447961994386", "image": dom + "/og-image.jpg", "logo": dom + "/icon-512.png",
-         "description": "CITB-trained roofer with 15 years of housing association experience. Slating, tiling, flat roofing and lead work across Kent."}
+         "description": "CITB-trained roofer with 25+ years of roofing experience, including 15 years on housing association work. Slating, tiling, flat roofing and lead work across Kent."}
     if d.get("email"): b["email"] = d["email"]
     a = d.get("address_parts") or {}
     if a.get("streetAddress"): b["address"] = {"@type": "PostalAddress", "addressCountry": "GB", **{k: v for k, v in a.items() if v}}

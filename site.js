@@ -8,36 +8,44 @@ let internal=false;try{const r=new URL(document.referrer),norm=x=>x.replace(/ind
 const seen=navT!=='reload'&&(internal||navT==='back_forward');
 function endIntro(){
   if(!intro||intro.dataset.done)return;intro.dataset.done=1;
-  root.classList.remove('lock');root.classList.add('ready');intro.classList.add('out');
+  root.classList.remove('lock');root.classList.add('ready');intro.style.pointerEvents='none';intro.classList.add('out');
   setTimeout(()=>intro.remove(),1000);
 }
 if(!intro||reduce||seen){intro&&intro.remove();root.classList.add('ready')}
 else{root.classList.add('lock');setTimeout(endIntro,1400);intro.addEventListener('click',endIntro);addEventListener('keydown',e=>{if(e.key==='Escape')endIntro()})}
 
-/* header: progress, solid background, hides while scrolling down */
-const hdr=$('#hdr'),prog=$('#prog'),nav=$('#nav'),burger=$('#burger');let lastY=0;
-function onScroll(){
-  const y=scrollY,max=document.documentElement.scrollHeight-innerHeight;
-  prog.style.setProperty('--p',max>0?y/max:0);
-  hdr.classList.toggle('solid',y>40);
-  hdr.classList.toggle('hide',y>lastY&&y>260&&!nav.classList.contains('open')&&!matchMedia('(max-width:900px)').matches); // on phones the menu button stays on screen
-  lastY=y;
-}
-addEventListener('scroll',onScroll,{passive:true});onScroll();
-burger.addEventListener('click',()=>{const o=nav.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
-$$('#nav a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');burger.setAttribute('aria-expanded','false')}));
+/* header: progress bar and solid background; scroll work is batched into one frame */
+const hdr=$('#hdr'),prog=$('#prog'),nav=$('#nav'),burger=$('#burger');
+let maxScroll=1,solid=false,ticking=false;
+const measure=()=>{maxScroll=Math.max(1,document.documentElement.scrollHeight-innerHeight)};
+function paint(){ticking=false;const y=scrollY;prog.style.setProperty('--p',Math.min(1,y/maxScroll));const s=y>40;if(s!==solid){solid=s;hdr.classList.toggle('solid',s)}}
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(paint)}},{passive:true});
+addEventListener('resize',()=>{measure();paint();if(innerWidth>900)closeMenu()});
+if('ResizeObserver' in window)new ResizeObserver(()=>{measure();paint()}).observe(document.body);
+measure();paint();
 
-/* magnetic buttons + hero photo parallax (mouse only) */
-if(fine&&!reduce){
-  $$('.btn').forEach(b=>{
-    b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();
-      b.style.setProperty('--mx',(e.clientX-r.left-r.width/2)*.16+'px');b.style.setProperty('--my',(e.clientY-r.top-r.height/2)*.3+'px')});
-    b.addEventListener('pointerleave',()=>{b.style.setProperty('--mx','0px');b.style.setProperty('--my','0px')});
-  });
-  const hero=$('#hero');
-  if(hero)hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();
-    hero.style.setProperty('--px',((e.clientX-r.left)/r.width-.5)*2);hero.style.setProperty('--py',((e.clientY-r.top)/r.height-.5)*2)});
-}
+/* menu: staggered slide-in; closes on a tap outside, a link, Esc, or a resize to desktop */
+const scrim=document.createElement('div');scrim.className='scrim';document.body.appendChild(scrim);
+$$('#nav a').forEach((a,i)=>a.style.setProperty('--i',i));
+function setMenu(open){nav.classList.toggle('open',open);scrim.classList.toggle('on',open);root.classList.toggle('menu-open',open);burger.setAttribute('aria-expanded',open);burger.setAttribute('aria-label',open?'Close menu':'Menu')}
+function closeMenu(){if(nav.classList.contains('open'))setMenu(false)}
+burger.addEventListener('click',()=>setMenu(!nav.classList.contains('open')));
+scrim.addEventListener('click',closeMenu);
+$$('#nav a').forEach(a=>a.addEventListener('click',closeMenu));
+addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
+
+/* press feedback: a ripple from the exact point of the tap (buttons never move away from the cursor) */
+if(!reduce)document.addEventListener('pointerdown',e=>{
+  const t=e.target.closest('.btn,.chip,.round,.callfab,.chat');if(!t)return;
+  const r=t.getBoundingClientRect(),d=Math.max(r.width,r.height)*2.2,el=document.createElement('span');
+  el.className='rip';el.style.cssText=`width:${d}px;height:${d}px;left:${e.clientX-r.left-d/2}px;top:${e.clientY-r.top-d/2}px`;
+  t.appendChild(el);el.addEventListener('animationend',()=>el.remove());setTimeout(()=>el.remove(),900); // safety clean-up
+},{passive:true});
+
+/* hero photo parallax (mouse only, one update per frame) */
+if(fine&&!reduce){const hero=$('#hero');if(hero){let px=0,py=0,raf=0;
+  hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();px=((e.clientX-r.left)/r.width-.5)*2;py=((e.clientY-r.top)/r.height-.5)*2;
+    if(!raf)raf=requestAnimationFrame(()=>{raf=0;hero.style.setProperty('--px',px);hero.style.setProperty('--py',py)})},{passive:true})}}
 
 /* services (home): hover or tap a service, its photo wipes in */
 const items=$$('.svc-item'),imgs=$$('#stage img');
